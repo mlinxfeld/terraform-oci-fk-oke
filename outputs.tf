@@ -8,9 +8,9 @@ output "cluster" {
 
 output "node_pool" {
   value = {
-    id                 = oci_containerengine_node_pool.fk_oke_node_pool.id
-    kubernetes_version = oci_containerengine_node_pool.fk_oke_node_pool.kubernetes_version
-    name               = oci_containerengine_node_pool.fk_oke_node_pool.name
+    id                 = var.virtual_node_pool ? oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[*].id : oci_containerengine_node_pool.fk_oke_node_pool[*].id
+    kubernetes_version = var.virtual_node_pool ? oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[*].kubernetes_version : oci_containerengine_node_pool.fk_oke_node_pool[*].kubernetes_version
+    name               = var.virtual_node_pool ? oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[*].display_name : oci_containerengine_node_pool.fk_oke_node_pool[*].name
   }
 }
 

@@ -130,6 +130,10 @@ variable "pods_subnet_cidr" {
   default = "10.0.4.0/24"
 }
 
+variable "virtual_node_pool" {
+  default = false
+}
+
 variable "node_linux_version" {
   default = "8.7"
 }
@@ -140,6 +144,14 @@ variable "node_count" {
 
 variable "node_pool_image_type" {
   default = "oke"
+}
+
+variable "virtual_nodepool_pod_shape" {
+  default = "Pod.Standard.E4.Flex"
+}
+
+variable "virtual_nodepool_nsg_ids" {
+  default = []
 }
 
 variable "cluster_type" {

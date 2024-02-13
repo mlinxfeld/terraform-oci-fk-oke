@@ -11,6 +11,7 @@ output "node_pool" {
     id                 = var.virtual_node_pool ? oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[*].id : oci_containerengine_node_pool.fk_oke_node_pool[*].id
     kubernetes_version = var.virtual_node_pool ? oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[*].kubernetes_version : oci_containerengine_node_pool.fk_oke_node_pool[*].kubernetes_version
     name               = var.virtual_node_pool ? oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[*].display_name : oci_containerengine_node_pool.fk_oke_node_pool[*].name
+    nodes              = var.virtual_node_pool ? null : oci_containerengine_node_pool.fk_oke_node_pool[*].nodes[*].private_ip
   }
 }
 

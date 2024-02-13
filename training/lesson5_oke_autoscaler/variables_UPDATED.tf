@@ -6,7 +6,11 @@ variable "region" {}
 variable "fingerprint" {}
 
 variable "kubernetes_version" {
-  default = "v1.26.2"
+  default = "v1.28.2"
+}
+
+variable "node_linux_version" {
+  default = "8.8"
 }
 
 variable "node_pool_size" {
@@ -21,3 +25,12 @@ variable "max_number_of_nodes" {
   default = 10
 }
 
+variable "fk_oke_addon_map" {
+  type = map(object({
+    configurations = map(object({
+      config_value = string
+    }))
+    addon_version = string
+  }))
+  default = null
+}

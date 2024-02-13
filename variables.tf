@@ -1,3 +1,7 @@
+variable "region" {
+  default = ""
+}
+
 variable "compartment_ocid" {
   default = ""
 }
@@ -83,7 +87,8 @@ variable "is_nodepool_subnet_public" {
 }
 
 variable "k8s_version" {
-  default = "v1.26.2"
+#  default = "v1.26.2"
+   default = "v1.28.2"
 }
 
 variable "pool_name" {
@@ -135,11 +140,31 @@ variable "virtual_node_pool" {
 }
 
 variable "node_linux_version" {
-  default = "8.7"
+  default = "8.8"
+}
+
+variable "node_pool_count" {
+  default = 1
 }
 
 variable "node_count" {
   default = 3
+}
+
+variable "autoscaler_enabled" {
+  default = false
+}
+
+variable "autoscaler_node_pool_count" {
+  default = 1
+}
+
+variable "autoscaler_min_number_of_nodes" {
+  default = 1
+}
+
+variable "autoscaler_max_number_of_nodes" {
+  default = 10
 }
 
 variable "node_pool_image_type" {

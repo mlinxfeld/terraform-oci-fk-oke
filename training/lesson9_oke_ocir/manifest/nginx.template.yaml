@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: ${number_of_nginx_replicas}
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: ${image_url} 
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "500Mi"
+      imagePullSecrets:
+      - name: ocirsecret
+      ${ is_arm_node_shape ? "nodeSelector:" : "" }
+        ${ is_arm_node_shape ? "kubernetes.io/arch: arm64" : "" }

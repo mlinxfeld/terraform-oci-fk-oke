@@ -41,3 +41,4 @@ data "oci_containerengine_addons" "fk_oke_cluster_addons" {
 data "oci_containerengine_addon_options" "fk_oke_addon_options" {
     kubernetes_version = var.k8s_version
 }
+

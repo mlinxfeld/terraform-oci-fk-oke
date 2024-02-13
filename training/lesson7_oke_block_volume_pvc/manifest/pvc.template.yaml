@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ${block_volume_name}
+  annotations:
+    ${ pvc_from_existing_block_volume ? "volume.beta.kubernetes.io/oci-volume-source: ${block_volume_id}" : "" }
+spec:
+  storageClassName: "oci-custom-storageclass"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: ${block_volume_size}Gi

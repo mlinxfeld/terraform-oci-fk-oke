@@ -37,6 +37,8 @@ data "template_file" "service_deployment" {
       lb_listener_port  = var.lb_listener_port
       lb_nsg            = var.lb_nsg
       lb_nsg_id         = var.lb_nsg ? oci_core_network_security_group.FoggyKitchenOKELBSecurityGroup[0].id : ""
+      use_reserved_public_ip_for_lb = var.use_reserved_public_ip_for_lb
+      reserved_public_ip_for_lb     = var.use_reserved_public_ip_for_lb ? oci_core_public_ip.FoggyKitchenReservedPublicIP[0].ip_address : ""
   }
 }
 

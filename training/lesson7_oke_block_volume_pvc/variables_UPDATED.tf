@@ -55,7 +55,7 @@ variable "network_cidrs" {
 
 variable "pvc_from_existing_block_volume" { 
   description = "Existing (true) means created by Terraform, in opposite (false) it will be create from with K8S."
-  default = false 
+  default = true
 }
 
 variable "block_volume_name" {

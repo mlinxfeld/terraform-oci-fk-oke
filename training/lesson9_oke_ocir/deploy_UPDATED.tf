@@ -89,7 +89,7 @@ resource "null_resource" "deploy_oke_nginx" {
   }
 
   provisioner "local-exec" {
-    command = "kubectl apply -f ${local_file.nginx_deployment.filename} --request-timeout=60s --v=9"
+    command = "kubectl apply -f ${local_file.nginx_deployment.filename} --request-timeout=60s"
   }
 
   provisioner "local-exec" {

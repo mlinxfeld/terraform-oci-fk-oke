@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${pod_name}-node${node_index}-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: ${number_of_pods_replicas}
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: ${pod_name}${node_index}
+        image: nginx:1.14.2
+        ports:
+          - containerPort: 80
+            name: http
+        volumeMounts:
+          - name: nfs
+            mountPath: /var/www/html
+      volumes:
+      - name: nfs
+        persistentVolumeClaim:
+          claimName: ${pvc_name}
+          readOnly: false
+      nodeSelector:
+        nodeName: node${node_index}
+        ${ is_arm_node_shape ? "kubernetes.io/arch: arm64" : "" }

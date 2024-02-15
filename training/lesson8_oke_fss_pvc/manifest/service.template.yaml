@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  labels:
+    app: nginx
+  annotations:
+    oci.oraclecloud.com/load-balancer-type: "lb"
+    service.beta.kubernetes.io/oci-load-balancer-shape: "${lb_shape}"
+    ${ lb_shape == "flexible" ? "service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: \"${flex_lb_min_shape}\"" : "" }
+    ${ lb_shape == "flexible" ? "service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: \"${flex_lb_max_shape}\"" : "" }  
+    ${ lb_nsg ? "oci.oraclecloud.com/oci-network-security-groups: \"${lb_nsg_id}\"" : "" }
+spec:
+  type: LoadBalancer
+  ${ use_reserved_public_ip_for_lb == "true" ? "loadBalancerIP: \"${reserved_public_ip_for_lb}\"" : "" }
+  ports:
+  - port: ${lb_listener_port}
+  selector:
+    app: nginx

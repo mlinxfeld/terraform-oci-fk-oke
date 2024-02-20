@@ -63,18 +63,30 @@ martin_lin@codeeditor:lesson1_oke_basic_cluster (eu-frankfurt-1)$ terraform init
 
 Initializing the backend...
 Initializing modules...
+Downloading git::https://github.com/mlinxfeld/terraform-oci-fk-oke.git for fk-oke...
+- fk-oke in .terraform/modules/fk-oke
 
 Initializing provider plugins...
-- Reusing previous version of hashicorp/tls from the dependency lock file
 - Reusing previous version of oracle/oci from the dependency lock file
-- Using previously-installed hashicorp/tls v4.0.5
-- Using previously-installed oracle/oci v5.29.0
+- Reusing previous version of hashicorp/tls from the dependency lock file
+- Installing oracle/oci v5.29.0...
+- Installed oracle/oci v5.29.0 (signed by a HashiCorp partner, key ID 1533A49284137CEB)
+- Installing hashicorp/tls v4.0.5...
+- Installed hashicorp/tls v4.0.5 (signed by HashiCorp)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
 
 Terraform has been successfully initialized!
 
 You may now begin working with Terraform. Try running "terraform plan" to see
 any changes that are required for your infrastructure. All Terraform commands
 should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
 ```
 
 ### Apply the changes 

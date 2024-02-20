@@ -1,0 +1,44 @@
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 1 - Creating OKE Basic Cluster."
+description: "In this lesson, you will learn to use Terraform to set up OKE Basic Cluster."
+stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Basic Cluster."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+ 
+variables:
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region for your OCI DevOps Project"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment OCID"
+    description: "Choose Comparment for your OCI DevOps Project"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  

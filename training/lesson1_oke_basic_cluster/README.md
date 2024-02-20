@@ -54,7 +54,7 @@ compartment_ocid   = "ocid1.compartment.oc1..<your_comparment_ocid>"
 region             = "<oci_region>"
 ```
 
-### Initilize Terraform
+### Initialize Terraform
 
 Run the following command to initialize Terraform environment:
 

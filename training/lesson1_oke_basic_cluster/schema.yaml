@@ -29,14 +29,14 @@ variables:
 
   region:
     title: "Region"
-    description: "Choose Region for your OCI DevOps Project"
+    description: "Choose Region for your OCI OKE Basic Cluster"
     type: oci:identity:region:name
     required: true
     visibile: true
 
   compartment_ocid:
     title: "Compartment OCID"
-    description: "Choose Comparment for your OCI DevOps Project"
+    description: "Choose Comparment for your OKE Basic Cluster"
     type: oci:identity:compartment:id
     required: true
     visibile: true

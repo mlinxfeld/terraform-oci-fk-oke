@@ -28,7 +28,7 @@ In this tutorial, we'll guide you through the process of setting up a Basic OKE 
 
 ## Deploy Using the Terraform CLI in Cloud Shell
 
-### Clone of the repo into OCI CLoud Shell
+### Clone of the repo into OCI Cloud Shell
 
 Now, you'll want a local copy of this repo. You can make that with the commands:
 Clone the repo from github by executing the command as follows and then go to proper subdirectory:

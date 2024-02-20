@@ -1,0 +1,3 @@
+tenancy_ocid       = "ocid1.tenancy.oc1..<your_tenancy_ocid>"
+compartment_ocid   = "ocid1.compartment.oc1..<your_comparment_ocid>"
+region             = "<oci_region>"

@@ -35,7 +35,7 @@ variables:
     visibile: true
 
   compartment_ocid:
-    title: "Compartment OCID"
+    title: "Compartment"
     description: "Choose Comparment for your OKE Basic Cluster"
     type: oci:identity:compartment:id
     required: true

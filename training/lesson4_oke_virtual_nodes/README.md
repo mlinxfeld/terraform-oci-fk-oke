@@ -101,12 +101,7 @@ module.fk-oke.data.oci_identity_availability_domains.ADs: Reading...
 module.fk-oke.data.oci_containerengine_cluster_option.fk_oke_cluster_option: Reading...
 module.fk-oke.data.oci_identity_availability_domains.AD: Reading...
 module.fk-oke.data.oci_core_services.AllOCIServices[0]: Reading...
-module.fk-oke.data.oci_core_services.AllOCIServices[0]: Read complete after 0s [id=CoreServicesDataSource-0]
-module.fk-oke.data.oci_identity_availability_domains.ADs: Read complete after 0s [id=IdentityAvailabilityDomainsDataSource-3596290162]
-module.fk-oke.data.oci_containerengine_cluster_option.fk_oke_cluster_option: Read complete after 0s [id=ContainerengineClusterOptionDataSource-1870923232]
-module.fk-oke.data.oci_identity_availability_domains.AD: Read complete after 0s [id=IdentityAvailabilityDomainsDataSource-3596290162]
-module.fk-oke.data.oci_containerengine_addon_options.fk_oke_addon_options: Read complete after 0s [id=ContainerengineAddonOptionsDataSource-1219351960]
-module.fk-oke.data.oci_containerengine_node_pool_option.fk_oke_node_pool_option: Read complete after 1s [id=ContainerengineNodePoolOptionDataSource-1870923232]
+(...)
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
@@ -115,22 +110,7 @@ plan. Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
-  # module.fk-oke.data.oci_containerengine_addons.fk_oke_cluster_addons will be read during apply
-  # (config refers to values not yet known)
- <= data "oci_containerengine_addons" "fk_oke_cluster_addons" {
-      + addons     = (known after apply)
-      + cluster_id = (known after apply)
-      + id         = (known after apply)
-    }
-
-  # module.fk-oke.data.oci_containerengine_cluster_kube_config.KubeConfig will be read during apply
-  # (config refers to values not yet known)
- <= data "oci_containerengine_cluster_kube_config" "KubeConfig" {
-      + cluster_id    = (known after apply)
-      + content       = (known after apply)
-      + id            = (known after apply)
-      + token_version = "2.0.0"
-    }
+(...)
 
   # module.fk-oke.oci_containerengine_cluster.fk_oke_cluster will be created
   + resource "oci_containerengine_cluster" "fk_oke_cluster" {
@@ -342,15 +322,45 @@ Run the following command for destroying all resources:
 martin_lin@codeeditor:lesson4_oke_virtual_nodes (eu-frankfurt-1)$ terraform destroy
 
 data.template_file.nginx_deployment: Reading...
-data.template_file.nginx_deployment: Read complete after 0s [id=e8338d25ad6bc03b264552a9cc6b9020e244555c6f3c6edc2b30afa6347c1c44]
+data.template_file.nginx_deployment: Read complete after 1s [id=e8338d25ad6bc03b264552a9cc6b9020e244555c6f3c6edc2b30afa6347c1c44]
 local_file.nginx_deployment: Refreshing state... [id=daacc54085c4f86be24e42313b713188fe250a4f]
-module.fk-oke.tls_private_key.public_private_key_pair: Refreshing state... [id=57c135f9de74e3ed4c8784f22501612a4bc05c31]
-module.fk-oke.data.oci_containerengine_cluster_option.fk_oke_cluster_option: Reading...
+data.oci_identity_region_subscriptions.home_region_subscriptions: Reading...
+data.oci_identity_region_subscriptions.home_region_subscriptions: Read complete after 0s [id=IdentityRegionSubscriptionsDataSource-3596290162]
+oci_identity_policy.fk_oke_virtual_node_pool_policy: Refreshing state... [id=ocid1.policy.oc1..aaaaaaaab5oodvxi52zzfdlpy5yb56fxkami64hcqwcbqdvsx6aim63keiga]
+module.fk-oke.tls_private_key.public_private_key_pair: Refreshing state... [id=085a4821dad51c1f153ad0b166d528eb1d94d51d]
 module.fk-oke.data.oci_containerengine_addon_options.fk_oke_addon_options: Reading...
 module.fk-oke.data.oci_containerengine_node_pool_option.fk_oke_node_pool_option: Reading...
-module.fk-oke.data.oci_core_services.AllOCIServices[0]: Reading...
 module.fk-oke.data.oci_identity_availability_domains.AD: Reading...
+module.fk-oke.data.oci_core_services.AllOCIServices[0]: Reading...
+module.fk-oke.data.oci_containerengine_cluster_option.fk_oke_cluster_option: Reading...
+module.fk-oke.oci_core_vcn.fk_oke_vcn[0]: Refreshing state... [id=ocid1.vcn.oc1.eu-frankfurt-1.amaaaaaadngk4giahjbeqi2bhvvsngjsyyarrxxmxw5tkxerzhytn2osk5nq]
+module.fk-oke.data.oci_identity_availability_domains.ADs: Reading...
+module.fk-oke.data.oci_identity_availability_domains.ADs: Read complete after 0s [id=IdentityAvailabilityDomainsDataSource-3596290162]
+module.fk-oke.data.oci_identity_availability_domains.AD: Read complete after 0s [id=IdentityAvailabilityDomainsDataSource-3596290162]
+module.fk-oke.data.oci_containerengine_cluster_option.fk_oke_cluster_option: Read complete after 0s [id=ContainerengineClusterOptionDataSource-1870923232]
+module.fk-oke.oci_core_nat_gateway.fk_oke_natgw[0]: Refreshing state... [id=ocid1.natgateway.oc1.eu-frankfurt-1.aaaaaaaa5hisg6dbp4kjtrrshdk7cvvvlwf3cyikjj7bx2jzl5f4qorctglq]
+module.fk-oke.oci_core_internet_gateway.fk_oke_igw[0]: Refreshing state... [id=ocid1.internetgateway.oc1.eu-frankfurt-1.aaaaaaaaocz4jjky3vew6lne3kaej7ihclfb3yhw3btmveaslacizxqswzoa]
+module.fk-oke.data.oci_containerengine_addon_options.fk_oke_addon_options: Read complete after 0s [id=ContainerengineAddonOptionsDataSource-1219351960]
+module.fk-oke.oci_core_route_table.fk_oke_rt_via_igw[0]: Refreshing state... [id=ocid1.routetable.oc1.eu-frankfurt-1.aaaaaaaaezxeiwk5jdw4klacqpypuuhd35p6yewj65av3seudlyswva662pa]
+module.fk-oke.data.oci_core_services.AllOCIServices[0]: Read complete after 0s [id=CoreServicesDataSource-0]
+module.fk-oke.oci_core_security_list.fk_oke_api_endpoint_subnet_sec_list[0]: Refreshing state... [id=ocid1.securitylist.oc1.eu-frankfurt-1.aaaaaaaaypm5j6y3hyetd7icawlgxoodwe5xqzfqxtgah2o7jyptepsfsjmq]
+module.fk-oke.oci_core_service_gateway.fk_oke_sg[0]: Refreshing state... [id=ocid1.servicegateway.oc1.eu-frankfurt-1.aaaaaaaac5v2fadfvxnjixykjpbgg7bgp2prqsxoaz3mxb2trtomv64f5kcq]
+module.fk-oke.oci_core_security_list.fk_oke_nodepool_subnet_sec_list[0]: Refreshing state... [id=ocid1.securitylist.oc1.eu-frankfurt-1.aaaaaaaaumia73rv7ol5zddimu4hoqq2z6po6uxt4nrozbxjjnzuvzic4xkq]
+module.fk-oke.oci_core_route_table.fk_oke_rt_via_natgw_and_sg[0]: Refreshing state... [id=ocid1.routetable.oc1.eu-frankfurt-1.aaaaaaaagcn6buw7tr76ip3mv6mnxmkqipoeuu4nz5bj2h6tls4f47ly7xjq]
+module.fk-oke.data.oci_containerengine_node_pool_option.fk_oke_node_pool_option: Read complete after 0s [id=ContainerengineNodePoolOptionDataSource-1870923232]
+module.fk-oke.oci_core_subnet.fk_oke_lb_subnet[0]: Refreshing state... [id=ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaalkxrbldh7abwuwt6tmgq6qnl6r44mpel3yucwi7kh5goyx6jbfna]
+module.fk-oke.oci_core_subnet.fk_oke_nodepool_subnet[0]: Refreshing state... [id=ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaawkmqoam2n2c3d3pqlicefcjy7arssmupnrlxokplrbxjhfex3dbq]
+module.fk-oke.oci_core_subnet.fk_oke_api_endpoint_subnet[0]: Refreshing state... [id=ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaacp2o6w7vzphklspa3zopqantrkonhnhzw45vbwjbxbdt2xgdvpia]
+module.fk-oke.oci_containerengine_cluster.fk_oke_cluster: Refreshing state... [id=ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaa35m42wqloe2rlk272fxwge63gyijw42p4hokljnd6c6lkzii2jva]
+module.fk-oke.data.oci_containerengine_addons.fk_oke_cluster_addons: Reading...
+module.fk-oke.data.oci_containerengine_cluster_kube_config.KubeConfig: Reading...
+module.fk-oke.oci_containerengine_virtual_node_pool.fk_oke_virtual_node_pool[0]: Refreshing state... [id=ocid1.virtualnodepool.oc1.eu-frankfurt-1.amaaaaaadngk4giaenjxetnuwsu4f4aqb34w47oxtssfsezffhye3qicfnwq]
+module.fk-oke.data.oci_containerengine_addons.fk_oke_cluster_addons: Read complete after 0s [id=ContainerengineAddonsDataSource-1384344501]
+null_resource.deploy_nginx: Refreshing state... [id=4216408386760643991]
+module.fk-oke.data.oci_containerengine_cluster_kube_config.KubeConfig: Read complete after 0s [id=ContainerengineClusterKubeConfigDataSource-3939584060]
+
 (...)
+
 null_resource.deploy_nginx: Refreshing state... [id=6451609765774392253]
 module.fk-oke.data.oci_containerengine_cluster_kube_config.KubeConfig: Read complete after 0s [id=ContainerengineClusterKubeConfigDataSource-1653731019]
 

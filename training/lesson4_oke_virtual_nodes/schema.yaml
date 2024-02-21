@@ -56,15 +56,18 @@ variables:
     visibile: true
 
   pool_name:
+    title: "Virtual NodePool Name"
     description: "Choose Virtual NodePool Name"
     default: "FoggyKitchenVirtualNodePool"
     type: string
     required: false
 
   virtual_nodepool_pod_shape:
+    title: "Virtual NodePool Shape"
     description: "Choose Virtual NodePool Shape"
     default: "Pod.Standard.E4.Flex"
     required: false
+    type: enum
     enum: 
       - "Pod.Standard.E4.Flex"
       - "Pod.Standard.E3.Flex"

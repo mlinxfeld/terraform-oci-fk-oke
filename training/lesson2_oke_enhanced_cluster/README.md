@@ -286,26 +286,37 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
-module.fk-oke.tls_private_key.public_private_key_pair: Creating...
-module.fk-oke.tls_private_key.public_private_key_pair: Creation complete after 0s [id=25af89a6ad0d55a3b45e3f7c5a43b99f6cdaebdb]
-module.fk-oke.oci_core_vcn.fk_oke_vcn[0]: Creating...
-module.fk-oke.oci_core_vcn.fk_oke_vcn[0]: Creation complete after 1s [id=ocid1.vcn.oc1.eu-frankfurt-1.amaaaaaadngk4giaxvol2s7zfhugz6sciwb3y45j6smayqymg4vkjef35kjq]
-module.fk-oke.oci_core_internet_gateway.fk_oke_igw[0]: Creating...
-module.fk-oke.oci_core_service_gateway.fk_oke_sg[0]: Creating...
-module.fk-oke.oci_core_nat_gateway.fk_oke_natgw[0]: Creating...
-module.fk-oke.oci_core_security_list.fk_oke_api_endpoint_subnet_sec_list[0]: Creating...
 (...)
-module.fk-oke.oci_containerengine_node_pool.fk_oke_node_pool[0]: Still creating... [5m0s elapsed]
-module.fk-oke.oci_containerengine_node_pool.fk_oke_node_pool[0]: Still creating... [5m10s elapsed]
-module.fk-oke.oci_containerengine_node_pool.fk_oke_node_pool[0]: Still creating... [5m20s elapsed]
-module.fk-oke.oci_containerengine_node_pool.fk_oke_node_pool[0]: Creation complete after 5m29s [id=ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaarrkf2m5b3s3mvkazlwow3lcjitisyavj3qmg62fb4nm4godpqsfa]
 
-Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
-
+null_resource.deploy_nginx(local-exec): Executing: ["/bin/sh" "-c" "kubectl get pods"]
+null_resource.deploy_nginx (local-exec): NAME                                READY   STATUS    RESTARTS   AGE
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-5jbp9   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-76l2s   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-774th   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-bgbc6   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-gvmrj   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-m8h9k   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-mdgdt   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-n6h7w   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-q5n9t   1/1     Running   0          2m1s
+null_resource.deploy_nginx (local-exec): nginx-deployment-6d999996df-r8vsn   1/1     Running   0          2m1s
+null_resource.deploy_nginx: Provisioning with 'local-exec'...
+null_resource.deploy_nginx(local-exec): Executing: ["/bin/sh" "-c" "kubectl describe  pods | grep '  IP:'"]
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.30
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.15
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.62
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.12
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.35
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.220
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.143
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.254
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.87
+null_resource.deploy_nginx (local-exec):   IP:           10.0.1.240
+null_resource.deploy_nginx: Creation complete after 2m6s [id=8414799337788290871]
+Apply complete! Resources: 16 added, 0 changed, 0 destroyed.
 Outputs:
-
 Cluster = {
-  "id" = "ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaars4klton24xbdvuk3xquuik3dw4yf6b453asacctbcbuuqelc7ja"
+  "id" = "ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaabjf4ukyub4rgtg46gd4x5gcmktoeprbvnyhtcbwyjc23bcbl6ula"
   "kubernetes_version" = "v1.28.2"
   "name" = "FoggyKitchenOKECluster"
 }
@@ -314,12 +325,12 @@ KubeConfig = <<EOT
 apiVersion: v1
 kind: ""
 clusters:
-- name: cluster-cbuuqelc7ja
+- name: cluster-c23bcbl6ula
   cluster:
-    server: https://130.162.254.48:6443
-    certificate-authority-data: LS0tLS1(...)URS0tLS0tCg==
+    server: https://138.2.151.133:6443
+    certificate-authority-data: LS0tLS1CR(...)Q0FURS0tLS0tCg==
 users:
-- name: user-cbuuqelc7ja
+- name: user-c23bcbl6ula
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1beta1
@@ -329,21 +340,20 @@ users:
       - cluster
       - generate-token
       - --cluster-id
-      - ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaars4klton24xbdvuk3xquuik3dw4yf6b453asacctbcbuuqelc7ja
+      - ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaabjf4ukyub4rgtg46gd4x5gcmktoeprbvnyhtcbwyjc23bcbl6ula
       - --region
       - eu-frankfurt-1
       env: []
 contexts:
-- name: context-cbuuqelc7ja
+- name: context-c23bcbl6ula
   context:
-    cluster: cluster-cbuuqelc7ja
-    user: user-cbuuqelc7ja
-current-context: context-cbuuqelc7ja
-
+    cluster: cluster-c23bcbl6ula
+    user: user-c23bcbl6ula
+current-context: context-c23bcbl6ula
 EOT
 NodePool = {
   "id" = tolist([
-    "ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaarrkf2m5b3s3mvkazlwow3lcjitisyavj3qmg62fb4nm4godpqsfa",
+    "ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaambacwztojnmamifejxvdnv6abubkgbvewovctym24nsh4jrks4qq",
   ])
   "kubernetes_version" = tolist([
     "v1.28.2",
@@ -353,12 +363,13 @@ NodePool = {
   ])
   "nodes" = [
     tolist([
-      "10.0.1.198",
-      "10.0.1.96",
-      "10.0.1.6",
+      "10.0.1.10",
+      "10.0.1.158",
+      "10.0.1.137",
     ]),
   ]
 }
+
 ```
 
 ### Destroy the changes 

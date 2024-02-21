@@ -10,7 +10,3 @@ output "Cluster" {
 output "NodePool" {
   value = module.fk-oke.node_pool
 }
-
-output "compartment_ocid" {
-   value = var.compartment_ocid
-}

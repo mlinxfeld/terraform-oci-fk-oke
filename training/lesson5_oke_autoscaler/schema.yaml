@@ -1,0 +1,73 @@
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 4 - Creating OKE Enhanced Cluster with Autoscaler OKE Add-on."
+description: "In this lesson, you will learn to use Terraform to set up OKE Enhanced Cluster with Autoscaler OKE Add-on."
+stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Enhanced Cluster with Autoscaler OKE Add-on."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - number_of_nginx_replicas
+
+
+variables:
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region for your OCI OKE Enhanced Cluster"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment"
+    description: "Choose Comparment for your OKE Enhanced Cluster"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  number_of_nginx_replicas:
+    title: "Number of NGINX Replica"
+    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
+    type: integer
+    minimum: 1
+    maximum: 365
+    multipleOf: 1
+    default: 10
+    required: true
+    visibile: true
+
+  pool_name:
+    title: "Virtual NodePool Name"
+    description: "Choose Virtual NodePool Name"
+    default: "FoggyKitchenVirtualNodePool"
+    type: string
+    required: false
+
+  virtual_nodepool_pod_shape:
+    title: "Virtual NodePool Shape"
+    description: "Choose Virtual NodePool Shape"
+    default: "Pod.Standard.E4.Flex"
+    required: false
+    type: enum
+    enum: 
+      - "Pod.Standard.E4.Flex"
+      - "Pod.Standard.E3.Flex"
+      - "Pod.Standard.A1.Flex"

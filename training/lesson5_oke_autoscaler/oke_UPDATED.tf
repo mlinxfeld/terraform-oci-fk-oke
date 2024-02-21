@@ -1,7 +1,6 @@
 module "fk-oke" {
   providers                     = { oci = oci.targetregion }
-  source                        = "../../" 
-  #source                        = "github.com/mlinxfeld/terraform-oci-fk-oke"
+  source                        = "github.com/mlinxfeld/terraform-oci-fk-oke"
   tenancy_ocid                  = var.tenancy_ocid
   region                        = var.region 
   compartment_ocid              = var.compartment_ocid
@@ -15,6 +14,6 @@ module "fk-oke" {
   is_api_endpoint_subnet_public = true # OKE API Endpoint will be public (Internet facing)
   is_lb_subnet_public           = true # OKE LoadBalanacer will be public (Internet facing)
   is_nodepool_subnet_public     = false # OKE NodePool will be private (not Internet facing)
-  autoscaler_enabled            = true
+  autoscaler_enabled            = var.enable_autoscaler_addon # Enabling Autoscaler as OKE Add-On
 }
 

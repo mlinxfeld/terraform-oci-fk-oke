@@ -1,9 +1,13 @@
 variable "tenancy_ocid" {}
-variable "user_ocid" {}
-variable "private_key_path" {}
+#variable "user_ocid" {}
+#variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
-variable "fingerprint" {}
+#variable "fingerprint" {}
+
+variable "enable_autoscaler_addon" {
+  default = true
+}
 
 variable "kubernetes_version" {
   default = "v1.28.2"
@@ -25,12 +29,3 @@ variable "max_number_of_nodes" {
   default = 10
 }
 
-variable "fk_oke_addon_map" {
-  type = map(object({
-    configurations = map(object({
-      config_value = string
-    }))
-    addon_version = string
-  }))
-  default = null
-}

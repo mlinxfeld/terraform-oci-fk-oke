@@ -1,0 +1,55 @@
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 3 - Creating OKE Enhanced Cluster with OKE Add-Ons."
+description: "In this lesson, you will learn to use Terraform to set up OKE Enhanced Cluster with OKE Add-Ons."
+stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Enhanced Cluster with OKE Add-Ons."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+  - fk_oke_addon_map
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - number_of_nginx_replicas
+
+variables:
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region for your OCI OKE Enhanced Cluster"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment"
+    description: "Choose Comparment for your OKE Enhanced Cluster"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  number_of_nginx_replicas:
+    title: "Number of NGINX Replica"
+    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
+    type: integer
+    minimum: 1
+    maximum: 365
+    multipleOf: 1
+    default: 10
+    required: true
+    visibile: true

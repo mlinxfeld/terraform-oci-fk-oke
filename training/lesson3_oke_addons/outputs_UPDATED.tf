@@ -15,6 +15,4 @@ output "ClusterAddOns" {
   value = module.fk-oke.oke_cluster_addons
 }
 
-#output "AvailableClusterAddOns" {
-#  value = module.fk-oke.oke_addon_options
-#}
+

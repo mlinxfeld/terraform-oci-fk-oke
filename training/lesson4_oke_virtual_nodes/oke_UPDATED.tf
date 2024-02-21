@@ -1,8 +1,7 @@
 module "fk-oke" {
   providers                     = { oci = oci.targetregion }
   depends_on                    = [oci_identity_policy.fk_oke_virtual_node_pool_policy]
-  source                        = "../../" 
-  #source                        = "github.com/mlinxfeld/terraform-oci-fk-oke"
+  source                        = "github.com/mlinxfeld/terraform-oci-fk-oke"
   tenancy_ocid                  = var.tenancy_ocid
   compartment_ocid              = var.compartment_ocid
   cluster_type                  = "enhanced"

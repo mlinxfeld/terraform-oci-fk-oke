@@ -256,7 +256,7 @@ Terraform will perform the following actions:
       + rsa_bits                      = 2048
     }
 
-Plan: 14 to add, 0 to change, 0 to destroy.
+Plan: 18 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + Cluster    = {
@@ -405,7 +405,7 @@ Terraform will perform the following actions:
 
 (...)
 
-Plan: 0 to add, 0 to change, 16 to destroy.
+Plan: 0 to add, 0 to change, 18 to destroy.
 
 (...)
 
@@ -432,5 +432,5 @@ module.fk-oke.oci_core_service_gateway.fk_oke_sg[0]: Destruction complete after 
 module.fk-oke.oci_core_vcn.fk_oke_vcn[0]: Destroying... [id=ocid1.vcn.oc1.eu-frankfurt-1.amaaaaaadngk4giayvft35o5frxjbapbrna5kjkzxin6wy2ohippiqnhhiwa]
 module.fk-oke.oci_core_vcn.fk_oke_vcn[0]: Destruction complete after 0s
 
-Destroy complete! Resources: 16 destroyed.
+Destroy complete! Resources: 18 destroyed.
 ```

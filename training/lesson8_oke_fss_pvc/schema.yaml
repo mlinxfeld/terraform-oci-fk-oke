@@ -33,6 +33,7 @@ variableGroups:
   - oke_node_boot_volume_size_in_gbs
   - oke_node_os_version
   - cluster_name
+  - use_reserved_public_ip_for_lb
   - lb_shape
   - flex_lb_min_shape
   - flex_lb_max_shape
@@ -83,6 +84,13 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
 
   node_pool_size:
     type: number

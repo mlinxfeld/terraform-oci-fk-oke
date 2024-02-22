@@ -185,7 +185,7 @@ variables:
     type: enum
     required: false
     default: "10"
-    title: "LB Flex Min Shape"
+    title: "LoadBalancer Flex Min Shape"
     description: "Choose Minimum Shape for Flex Load Balancer."
     enum:
       - "10"
@@ -203,7 +203,7 @@ variables:
     type: enum
     required: false
     default: "100"
-    title: "LB Flex Max Shape"
+    title: "LoadBalancer Flex Max Shape"
     description: "Choose Maximum Shape for Flex Load Balancer."
     enum:
       - "10"

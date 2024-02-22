@@ -23,6 +23,7 @@ variableGroups:
   - flex_lb_max_shape
   - use_reserved_public_ip_for_lb
   - lb_nsg
+  - lb_listener_port
 
 variables:
 

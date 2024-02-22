@@ -1,0 +1,134 @@
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 6 - Creating OKE Cluster with OCI LoadBalancer as Kubernetes Service."
+description: "In this lesson, you will learn to use Terraform to set up OKE Cluster with OCI LoadBalancer as Kubernetes Service."
+stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Cluster with OCI LoadBalancer as Kubernetes Service."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+  - network_cidrs
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - number_of_nginx_replicas
+  - lb_shape
+  - flex_lb_min_shape
+  - flex_lb_max_shape
+  - use_reserved_public_ip_for_lb
+  - lb_nsg
+
+variables:
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region for your OCI OKE Enhanced Cluster"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment"
+    description: "Choose Comparment for your OKE Enhanced Cluster"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  number_of_nginx_replicas:
+    title: "Number of NGINX Replica"
+    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
+    type: integer
+    minimum: 1
+    maximum: 365
+    multipleOf: 1
+    default: 10
+    required: true
+    visibile: true
+
+  lb_shape:
+    type: enum
+    title: "LoadBalancer Shape"
+    description: "Choose LoadBalancer Shape"
+    default: "flexible"
+    required: false 
+    enum:
+      - "flexible"
+      - "100Mbps"
+      - "10Mbps"
+      - "10Mbps-Micro"
+      - "400Mbps"
+      - "8000Mbps"
+
+  flex_lb_min_shape:
+    type: enum
+    required: false
+    default: "10"
+    title: "LB Flex Min Shape"
+    description: "Choose Minimum Shape for Flex Load Balancer."
+    enum:
+      - "10"
+      - "100"
+      - "1000"
+      - "400"
+      - "8000"
+    visible:
+      and:
+        - eq:
+          - lb_shape 
+          - "flexible"
+
+  flex_lb_max_shape:
+    type: enum
+    required: false
+    default: "100"
+    title: "LB Flex Max Shape"
+    description: "Choose Maximum Shape for Flex Load Balancer."
+    enum:
+      - "10"
+      - "100"
+      - "1000"
+      - "400"
+      - "8000"
+    visible:
+      and:
+        - eq:
+          - lb_shape 
+          - "flexible"
+
+  lb_listener_port:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 65563
+    multipleOf: 1
+    default: 80
+    title: "Load Balancer Listener Port"
+    description: "Choose Load Balancer Listener Port."
+
+  use_reserved_public_ip_for_lb:
+    type: boolean
+    title: "Usg Reserved Public IP for OKE Load Balancer?"
+    description: "Check if you want to use Reserved Public IP for OKE Load Balancer."
+    visible: true
+    default: false
+
+  lb_nsg:
+    type: boolean
+    title: "Usg NSG instead of Security List for OKE Load Balancer?"
+    description: "Check if you want to use Network Security Group for OKE Load Balancer instead of Security List."
+    visible: true
+    default: true

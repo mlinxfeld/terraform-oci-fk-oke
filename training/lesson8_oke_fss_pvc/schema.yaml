@@ -1,0 +1,236 @@
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 8 - Creating OKE Cluster with OCI File Storage Service as Kubernetes PVC"
+description: "In this lesson, you will learn to use Terraform to set up OKE Cluster with OCI File Storage Service as Kubernetes PVC."
+stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Cluster with OCI File Storage Service as Kubernetes PVC."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+  - network_cidrs
+  - availablity_domain_name
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - number_of_nginx_replicas
+  - show_advanced
+
+- title: "OKE Optional Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - kubernetes_version
+  - oke_node_shape
+  - flex_shape_memory
+  - flex_shape_ocpus
+  - oke_node_boot_volume_size_in_gbs
+  - oke_node_os_version
+  - cluster_name
+  - lb_shape
+  - flex_lb_min_shape
+  - flex_lb_max_shape
+  - lb_listener_port
+  - lb_nsg
+
+- title: "File Storage Service Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - mount_target_ip_address
+  - file_storage_export_path
+
+- title: "Deployment Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - pv_name  
+  - pv_size
+  - pvc_name
+  - pvc_size
+  - pod_name
+  - number_of_pods
+  - number_of_pods_replicas
+
+variables:
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region for your OCI OKE Enhanced Cluster"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment"
+    description: "Choose Comparment for your OKE Enhanced Cluster"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  number_of_nginx_replicas:
+    title: "Number of NGINX Replica"
+    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
+    type: integer
+    minimum: 1
+    maximum: 365
+    multipleOf: 1
+    default: 10
+    required: true
+    visibile: true
+
+  lb_shape:
+    type: enum
+    title: "LoadBalancer Shape"
+    description: "Choose LoadBalancer Shape"
+    default: "flexible"
+    required: false 
+    enum:
+      - "flexible"
+      - "100Mbps"
+      - "10Mbps"
+      - "10Mbps-Micro"
+      - "400Mbps"
+      - "8000Mbps"
+
+  flex_lb_min_shape:
+    type: enum
+    required: false
+    default: "10"
+    title: "LB Flex Min Shape"
+    description: "Choose Minimum Shape for Flex Load Balancer."
+    enum:
+      - "10"
+      - "100"
+      - "1000"
+      - "400"
+      - "8000"
+    visible:
+      and:
+        - eq:
+          - lb_shape 
+          - "flexible"
+
+  flex_lb_max_shape:
+    type: enum
+    required: false
+    default: "100"
+    title: "LB Flex Max Shape"
+    description: "Choose Maximum Shape for Flex Load Balancer."
+    enum:
+      - "10"
+      - "100"
+      - "1000"
+      - "400"
+      - "8000"
+    visible:
+      and:
+        - eq:
+          - lb_shape 
+          - "flexible"
+
+  lb_listener_port:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 65563
+    multipleOf: 1
+    default: 80
+    title: "Load Balancer Listener Port"
+    description: "Choose Load Balancer Listener Port."
+
+  use_reserved_public_ip_for_lb:
+    type: boolean
+    title: "Usg Reserved Public IP for OKE Load Balancer?"
+    description: "Check if you want to use Reserved Public IP for OKE Load Balancer."
+    visible: true
+    default: false
+
+  lb_nsg:
+    type: boolean
+    title: "Usg NSG instead of Security List for OKE Load Balancer?"
+    description: "Check if you want to use Network Security Group for OKE Load Balancer instead of Security List."
+    visible: true
+    default: true
+
+  mount_target_ip_address:
+    type: string
+    required: false
+    title: "Mount Target IP Address"
+    description: "Choose Mount Target IP Address for FSS PVC to OKE."
+
+  file_storage_export_path:
+    type: string
+    required: false
+    title: "File Storage Export Path"
+    description: "File Storage Export Path."
+
+  pv_name:
+    type: string
+    title: "FSS PV Name"
+    description: "Choose FSS PV Name"
+    required: false
+
+  pv_size:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 1024
+    multipleOf: 1
+    default: 100
+    title: "How big should be FSS PV in GB?"
+    description: "Choose number of GB for FSS PV."
+
+  pvc_name:
+    type: string
+    title: "FSS PVC Name"
+    description: "Choose FSS PVC Name"
+    required: false
+
+  pvc_size:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 1024
+    multipleOf: 1
+    default: 100
+    title: "How big should be FSS PVC in GB?"
+    description: "Choose number of GB for FSS PVC."
+
+  pod_name:
+    type: string
+    title: "POD Name"
+    description: "Choose POD Name"
+    required: false
+
+  number_of_pods:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 3
+    title: "How many NGINX PODS?"
+    description: "Choose number of NGINX PODS attached to FSS PVC to be deployed."
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 4 - Creating OKE Enhanced Cluster with Autoscaler OKE Add-on."
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 5 - Creating OKE Enhanced Cluster with Autoscaler OKE Add-on."
 description: "In this lesson, you will learn to use Terraform to set up OKE Enhanced Cluster with Autoscaler OKE Add-on."
 stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Enhanced Cluster with Autoscaler OKE Add-on."
 schemaVersion: 1.1.0
@@ -16,7 +16,12 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
-  - number_of_nginx_replicas
+  - enable_autoscaler_addon
+  - kubernetes_version
+  - node_linux_version
+  - node_pool_size
+  - min_number_of_nodes
+  - max_number_of_nodes
 
 
 variables:
@@ -43,31 +48,64 @@ variables:
     required: true
     visibile: true
 
-  number_of_nginx_replicas:
-    title: "Number of NGINX Replica"
-    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
+  enable_autoscaler_addon:
+    title: "Enable OKE Cluster Autoscaler Add-on"
+    description: "Choose if you want to enable OKE Cluster Autoscaler Add-on"
+    type: boolean
+    default: true
+    required: true
+    visible: true
+
+  kubernetes_version:
+    title: "Kubernetes Version"
+    description: "Choose Kubernetes Version for your OKE Enhanced Cluster"
+    default: "v1.28.2"
+    required: false
+    type: enum
+    enum: 
+      - "v1.28.2"
+      - "v1.27.2"
+      - "v1.26.7"    
+
+  node_linux_version:
+    title: "Kubernetes Nodes OS Version"
+    description: "Choose Kubernetes Nodes OS Version"
+    default: "8.8"
+    required: false
+    type: enum
+    enum: 
+      - "8.8"
+      - "8.7"       
+
+  node_pool_size:
+    title: "Number of Nodes"
+    description: "Choose number of Nodes in your OKE Enhanced Cluster's Nodepools (regular & autoscaler)"
+    type: integer
+    minimum: 1
+    maximum: 365
+    multipleOf: 1
+    default: 3
+    required: true
+    visible: true
+
+  min_number_of_nodes:
+    title: "Min Number of Nodes"
+    description: "Choose minimum number of Nodes in OKE Cluster Autoscaler NodePool"
+    type: integer
+    minimum: 1
+    maximum: 365
+    multipleOf: 1
+    default: 3
+    required: true
+    visible: true
+
+  max_number_of_nodes:
+    title: "Max Number of Nodes"
+    description: "Choose maximum number of Nodes in OKE Cluster Autoscaler NodePool"
     type: integer
     minimum: 1
     maximum: 365
     multipleOf: 1
     default: 10
     required: true
-    visibile: true
-
-  pool_name:
-    title: "Virtual NodePool Name"
-    description: "Choose Virtual NodePool Name"
-    default: "FoggyKitchenVirtualNodePool"
-    type: string
-    required: false
-
-  virtual_nodepool_pod_shape:
-    title: "Virtual NodePool Shape"
-    description: "Choose Virtual NodePool Shape"
-    default: "Pod.Standard.E4.Flex"
-    required: false
-    type: enum
-    enum: 
-      - "Pod.Standard.E4.Flex"
-      - "Pod.Standard.E3.Flex"
-      - "Pod.Standard.A1.Flex"
+    visible: true

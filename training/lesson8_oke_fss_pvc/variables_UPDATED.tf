@@ -9,12 +9,16 @@ variable "availablity_domain_name" {
   default = ""
 }
 
-variable "number_of_nginx_replicas" {
-   default = 10
-}
-
 variable "oke_node_shape" {
   default = "VM.Standard.A1.Flex"
+}
+
+variable "oke_node_shape_memory" {
+  default = 4
+}
+
+variable "oke_node_shape_ocpus" {
+  default = 1
 }
 
 variable "lb_shape" {

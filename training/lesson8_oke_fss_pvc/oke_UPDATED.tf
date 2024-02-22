@@ -4,6 +4,8 @@ module "fk-oke" {
   compartment_ocid              = var.compartment_ocid
   cluster_type                  = "enhanced"
   node_shape                    = var.oke_node_shape
+  node_memory                   = var.oke_node_shape_memory
+  node_ocpus                    = var.oke_node_shape_ocpus
   node_count                    = var.node_pool_size
   oci_vcn_ip_native             = true
   

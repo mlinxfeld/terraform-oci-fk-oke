@@ -18,7 +18,6 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
-  - number_of_nginx_replicas
   - show_advanced
 
 - title: "OKE Optional Configuration"
@@ -27,9 +26,10 @@ variableGroups:
         - show_advanced
   variables:
   - kubernetes_version
+  - node_pool_size
   - oke_node_shape
-  - flex_shape_memory
-  - flex_shape_ocpus
+  - oke_node_shape_memory
+  - oke_node_shape_ocpus
   - oke_node_boot_volume_size_in_gbs
   - oke_node_os_version
   - cluster_name
@@ -84,16 +84,74 @@ variables:
     required: true
     visibile: true
 
-  number_of_nginx_replicas:
-    title: "Number of NGINX Replica"
-    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
-    type: integer
+  node_pool_size:
+    type: number
+    required: false
     minimum: 1
-    maximum: 365
+    maximum: 128
     multipleOf: 1
-    default: 10
-    required: true
-    visibile: true
+    default: 3
+    title: "OKE Cluster NodePool Size"
+    description: "Choose number of nodes of OKE Cluster NodePool."
+
+  oke_node_shape:
+    type: oci:core:instanceshape:name
+    title: "K8S Nodes Shape"
+    description: "Choose a shape for your K8S nodes"
+    default: "VM.Standard.A1.Flex"
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+
+  oke_node_shape_ocpus:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 1
+    title: "K8S Nodes Flex Shape OCPUs"
+    description: "Choose number of OCPUs for Flex Shape."
+    visible:
+      and:
+        - or:
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.E3.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.E4.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.A1.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Optimized3.Flex"
+
+  oke_node_shape_memory:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 6
+    title: "K8S Nodes Flex Shape Memory (GB)"
+    description: "Choose number GB for Flex Shape Memory."
+    visible:
+      and:
+        - or:
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.E3.Flex"
+          - eq:
+            - oke_node_shape
+            - "VM.Standard.E4.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.A1.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Optimized3.Flex"
 
   lb_shape:
     type: enum
@@ -229,7 +287,15 @@ variables:
     title: "How many NGINX PODS?"
     description: "Choose number of NGINX PODS attached to FSS PVC to be deployed."
 
-
+  number_of_pods_replicas:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 1
+    title: "How many NGINX POD replicas?"
+    description: "Choose number of NGINX POD replicas attached to FSS PVC to be deployed."
 
 
 

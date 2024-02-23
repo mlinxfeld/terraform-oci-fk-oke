@@ -16,13 +16,19 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
+  - show_advanced
+
+- title: "OKE Optional Configuraton"
+  visible: 
+      and:
+        - show_advanced
+  variables:
   - enable_autoscaler_addon
   - kubernetes_version
   - node_linux_version
   - node_pool_size
   - min_number_of_nodes
   - max_number_of_nodes
-
 
 variables:
 
@@ -48,6 +54,13 @@ variables:
     required: true
     visibile: true
 
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
+    
   enable_autoscaler_addon:
     title: "Enable OKE Cluster Autoscaler Add-on"
     description: "Choose if you want to enable OKE Cluster Autoscaler Add-on"

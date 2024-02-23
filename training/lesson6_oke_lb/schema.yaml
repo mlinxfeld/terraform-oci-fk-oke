@@ -17,8 +17,20 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
-
   - show_advanced
+
+- title: "OKE Deployment"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - number_of_nginx_replicas
+  - lb_shape
+  - flex_lb_min_shape
+  - flex_lb_max_shape
+  - lb_listener_port
+  - use_reserved_public_ip_for_lb
+  - lb_nsg
 
 variables:
 
@@ -43,6 +55,13 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
 
   number_of_nginx_replicas:
     title: "Number of NGINX Replica"
@@ -73,7 +92,7 @@ variables:
     type: enum
     required: false
     default: "10"
-    title: "LB Flex Min Shape"
+    title: "LoadBalancer Flex Min Shape"
     description: "Choose Minimum Shape for Flex Load Balancer."
     enum:
       - "10"
@@ -91,7 +110,7 @@ variables:
     type: enum
     required: false
     default: "100"
-    title: "LB Flex Max Shape"
+    title: "LoadBalancer Flex Max Shape"
     description: "Choose Maximum Shape for Flex Load Balancer."
     enum:
       - "10"

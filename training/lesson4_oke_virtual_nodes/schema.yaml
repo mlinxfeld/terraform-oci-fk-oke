@@ -16,9 +16,22 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
-  - number_of_nginx_replicas
+  - show_advanced
+
+- title: "OKE Optional Configuraton"
+  visible: 
+      and:
+        - show_advanced
+  variables:
   - pool_name
   - virtual_nodepool_pod_shape
+
+- title: "OKE Deployment"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - number_of_nginx_replicas
 
 variables:
 
@@ -44,6 +57,13 @@ variables:
     required: true
     visibile: true
 
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
+    
   number_of_nginx_replicas:
     title: "Number of NGINX Replica"
     description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"

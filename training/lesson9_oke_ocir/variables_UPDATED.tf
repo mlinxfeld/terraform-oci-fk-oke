@@ -1,9 +1,9 @@
 variable "tenancy_ocid" {}
-variable "user_ocid" {}
-variable "private_key_path" {}
+#variable "user_ocid" {}
+#variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
-variable "fingerprint" {}
+#variable "fingerprint" {}
 variable "ocir_user_name" {}
 variable "ocir_user_password" {}
 
@@ -13,6 +13,14 @@ variable "number_of_nginx_replicas" {
 
 variable "oke_node_shape" {
   default = "VM.Standard.E3.Flex"
+}
+
+variable "oke_node_shape_memory" {
+  default = 4
+}
+
+variable "oke_node_shape_ocpus" {
+  default = 1
 }
 
 variable "lb_shape" {

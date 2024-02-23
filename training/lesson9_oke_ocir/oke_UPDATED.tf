@@ -1,10 +1,11 @@
 module "fk-oke" {
-  source                        = "../../" 
-  #source                        = "github.com/mlinxfeld/terraform-oci-fk-oke"
+  source                        = "github.com/mlinxfeld/terraform-oci-fk-oke"
   tenancy_ocid                  = var.tenancy_ocid
   compartment_ocid              = var.compartment_ocid
   cluster_type                  = "enhanced"
   node_shape                    = var.oke_node_shape
+  node_memory                   = var.oke_node_shape_memory
+  node_ocpus                    = var.oke_node_shape_ocpus
   oci_vcn_ip_native             = true
   
   use_existing_vcn              = true

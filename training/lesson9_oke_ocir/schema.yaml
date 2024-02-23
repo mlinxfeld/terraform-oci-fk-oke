@@ -1,0 +1,258 @@
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 8 - Creating OKE Cluster with image taken from OCI Registry (OCIR)"
+description: "In this lesson, you will learn to use Terraform to set up OKE Cluster with image taken from OCI Registry (OCIR)."
+stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Cluster with image taken from OCI Registry (OCIR)."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+  - network_cidrs
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - ocir_user_name
+  - ocir_user_password
+  - show_advanced
+
+- title: "OKE Optional Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - kubernetes_version
+  - oke_node_shape
+  - oke_node_shape_memory
+  - oke_node_shape_ocpus
+
+- title: "OKE Deployment"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - number_of_nginx_replicas
+  - lb_shape
+  - flex_lb_min_shape
+  - flex_lb_max_shape
+  - lb_listener_port
+  - lb_nsg
+
+- title: "OCI Registry Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - ocir_namespace
+  - ocir_repo_name
+  - ocir_docker_repository
+  - ocir_user_email
+
+variables:
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region for your OCI OKE Enhanced Cluster"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment"
+    description: "Choose Comparment for your OKE Enhanced Cluster"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  ocir_user_name:
+    type: string
+    required: true
+    visibile: true
+    title: "OCIR username"
+    description: "Oracle Cloud Infrastructure Registry username (your OCI username)" 
+
+  ocir_user_password:
+    type: password
+    required: true
+    visibile: true
+    title: "OCIR user password"
+    description: "Oracle Cloud Infrastructure Registry user password (your OCI user authtoken)" 
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
+
+  oke_node_shape:
+    type: oci:core:instanceshape:name
+    title: "OKE Nodes Shape"
+    description: "Choose a shape for your OKE Cluster Nodes"
+    default: "VM.Standard.A1.Flex"
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+
+  oke_node_shape_ocpus:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 1
+    title: "OKE Node Flex Shape OCPUs"
+    description: "Choose number of OCPUs for Flex Shape."
+    visible:
+      and:
+        - or:
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.E3.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.E4.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.A1.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Optimized3.Flex"
+
+  oke_node_shape_memory:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 6
+    title: "OKE Node Flex Shape Memory (GB)"
+    description: "Choose number GB for Flex Shape Memory."
+    visible:
+      and:
+        - or:
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.E3.Flex"
+          - eq:
+            - oke_node_shape
+            - "VM.Standard.E4.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Standard.A1.Flex"
+          - eq:
+            - oke_node_shape 
+            - "VM.Optimized3.Flex"
+
+  lb_shape:
+    type: enum
+    title: "LoadBalancer Shape"
+    description: "Choose LoadBalancer Shape"
+    default: "flexible"
+    required: false 
+    enum:
+      - "flexible"
+      - "100Mbps"
+      - "10Mbps"
+      - "10Mbps-Micro"
+      - "400Mbps"
+      - "8000Mbps"
+
+  flex_lb_min_shape:
+    type: enum
+    required: false
+    default: "10"
+    title: "LoadBalancer Flex Min Shape"
+    description: "Choose Minimum Shape for Flex Load Balancer."
+    enum:
+      - "10"
+      - "100"
+      - "1000"
+      - "400"
+      - "8000"
+    visible:
+      and:
+        - eq:
+          - lb_shape 
+          - "flexible"
+
+  flex_lb_max_shape:
+    type: enum
+    required: false
+    default: "100"
+    title: "LoadBalancer Flex Max Shape"
+    description: "Choose Maximum Shape for Flex Load Balancer."
+    enum:
+      - "10"
+      - "100"
+      - "1000"
+      - "400"
+      - "8000"
+    visible:
+      and:
+        - eq:
+          - lb_shape 
+          - "flexible"
+
+  lb_listener_port:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 65563
+    multipleOf: 1
+    default: 80
+    title: "Load Balancer Listener Port"
+    description: "Choose Load Balancer Listener Port."
+
+  use_reserved_public_ip_for_lb:
+    type: boolean
+    title: "Usg Reserved Public IP for OKE Load Balancer?"
+    description: "Check if you want to use Reserved Public IP for OKE Load Balancer."
+    visible: true
+    default: false
+
+  lb_nsg:
+    type: boolean
+    title: "Usg NSG instead of Security List for OKE Load Balancer?"
+    description: "Check if you want to use Network Security Group for OKE Load Balancer instead of Security List."
+    visible: true
+    default: true
+
+  ocir_namespace:
+    type: string
+    title: "OCIR Namespace"
+    description: "Choose OCIR Namespace."
+    required: false
+
+  ocir_repo_name:
+    type: string
+    title: "OCIR Repo Name"
+    description: "Choose OCIR Repo Name."
+    required: false
+
+  ocir_docker_repository:
+    type: string
+    title: "OCIR Docker Repository"
+    description: "Choose OCIR Docker Repository."
+    required: false
+
+  ocir_user_email:
+    type: string
+    title: "OCIR User e-mail"
+    description: "Choose OCIR User e-mail."
+    required: false
+
+

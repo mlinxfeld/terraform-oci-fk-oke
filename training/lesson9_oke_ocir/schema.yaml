@@ -1,4 +1,4 @@
-title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 8 - Creating OKE Cluster with image taken from OCI Registry (OCIR)"
+title: "FoggyKitchen OCI Container Engine for Kubernetes with Terraform - LESSON 9 - Creating OKE Cluster with image taken from OCI Registry (OCIR)"
 description: "In this lesson, you will learn to use Terraform to set up OKE Cluster with image taken from OCI Registry (OCIR)."
 stackDescription: "In this lesson, you will learn to use Terraform to set up OKE Cluster with image taken from OCI Registry (OCIR)."
 schemaVersion: 1.1.0
@@ -37,6 +37,7 @@ variableGroups:
         - show_advanced
   variables:
   - number_of_nginx_replicas
+  - use_reserved_public_ip_for_lb
   - lb_shape
   - flex_lb_min_shape
   - flex_lb_max_shape
@@ -219,14 +220,14 @@ variables:
 
   use_reserved_public_ip_for_lb:
     type: boolean
-    title: "Usg Reserved Public IP for OKE Load Balancer?"
+    title: "Use Reserved Public IP for OKE Load Balancer?"
     description: "Check if you want to use Reserved Public IP for OKE Load Balancer."
     visible: true
     default: false
 
   lb_nsg:
     type: boolean
-    title: "Usg NSG instead of Security List for OKE Load Balancer?"
+    title: "Use NSG instead of Security List for OKE Load Balancer?"
     description: "Check if you want to use Network Security Group for OKE Load Balancer instead of Security List."
     visible: true
     default: true

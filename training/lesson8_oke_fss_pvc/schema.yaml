@@ -229,14 +229,14 @@ variables:
 
   use_reserved_public_ip_for_lb:
     type: boolean
-    title: "Usg Reserved Public IP for OKE Load Balancer?"
+    title: "Use Reserved Public IP for OKE Load Balancer?"
     description: "Check if you want to use Reserved Public IP for OKE Load Balancer."
     visible: true
     default: false
 
   lb_nsg:
     type: boolean
-    title: "Usg NSG instead of Security List for OKE Load Balancer?"
+    title: "Use NSG instead of Security List for OKE Load Balancer?"
     description: "Check if you want to use Network Security Group for OKE Load Balancer instead of Security List."
     visible: true
     default: true

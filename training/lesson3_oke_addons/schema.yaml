@@ -17,6 +17,13 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
+  - show_advanced
+
+- title: "OKE Deployment"
+  visible: 
+      and:
+        - show_advanced
+  variables:
   - number_of_nginx_replicas
 
 variables:
@@ -42,6 +49,13 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
 
   number_of_nginx_replicas:
     title: "Number of NGINX Replica"

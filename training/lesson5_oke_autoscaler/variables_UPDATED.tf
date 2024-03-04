@@ -30,6 +30,6 @@ variable "min_number_of_nodes" {
 }
 
 variable "max_number_of_nodes" {
-  default = 10
+  default = 5
 }
 

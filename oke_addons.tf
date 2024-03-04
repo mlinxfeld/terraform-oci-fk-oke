@@ -25,6 +25,16 @@ resource "oci_containerengine_addon" "fk_oke_autoscaler_addon" {
       value = join("", [var.autoscaler_min_number_of_nodes,":",var.autoscaler_max_number_of_nodes,":",oci_containerengine_node_pool.fk_oke_autoscaler_node_pool[0].id])
     }
 
+    configurations {
+      key = "scaleDownDelayAfterAdd"
+      value = var.autoscaler_scale_down_delay_after_add
+    }
+ 
+    configurations {
+      key = "scaleDownUnneededTime"
+      value = var.autoscaler_scale_down_unneeded_time
+    }    
+
     dynamic "configurations" {
      for_each = var.autoscaler_authtype_workload ? [1] : []
        content {

@@ -159,6 +159,14 @@ variable "autoscaler_authtype_workload" {
   default = true
 }
 
+variable "autoscaler_scale_down_delay_after_add" {
+  default = "15m"
+}
+
+variable "autoscaler_scale_down_unneeded_time" {
+  default = "10m"
+}
+
 variable "autoscaler_node_pool_count" {
   default = 1
 }

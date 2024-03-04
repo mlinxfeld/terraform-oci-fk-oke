@@ -18,7 +18,7 @@ module "fk-oke" {
   autoscaler_authtype_workload          = var.autoscaler_authtype_workload # Decide what type of Autoscaler AuthType (Workload vs Instance Principal)
   autoscaler_min_number_of_nodes        = var.min_number_of_nodes # Autoscaler minimum number of nodes
   autoscaler_max_number_of_nodes        = var.max_number_of_nodes # Autoscaler maximum number of nodes
-  autoscaler_scale_down_delay_after_add = "5m"
-  autoscaler_scale_down_unneeded_time   = "5m"  
+  autoscaler_scale_down_delay_after_add = "5m" # This specifies the delay after adding a new node before it can be considered for scaling down. It's useful to prevent too-rapid scaling actions.
+  autoscaler_scale_down_unneeded_time   = "5m" # How long a node should be unneeded before it's eligible for scale down 
 }
 

@@ -1,7 +1,6 @@
 module "fk-oke" {
   providers                      = { oci = oci.targetregion }
-  source                         = "../../"
-  #source                         = "github.com/mlinxfeld/terraform-oci-fk-oke"
+  source                         = "github.com/mlinxfeld/terraform-oci-fk-oke"
   tenancy_ocid                   = var.tenancy_ocid
   region                         = var.region 
   compartment_ocid               = var.compartment_ocid

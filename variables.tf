@@ -155,6 +155,10 @@ variable "autoscaler_enabled" {
   default = false
 }
 
+variable "autoscaler_authtype_workload" {
+  default = true
+}
+
 variable "autoscaler_node_pool_count" {
   default = 1
 }

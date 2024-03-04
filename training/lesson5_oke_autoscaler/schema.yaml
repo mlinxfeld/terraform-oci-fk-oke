@@ -24,6 +24,7 @@ variableGroups:
         - show_advanced
   variables:
   - enable_autoscaler_addon
+  - autoscaler_authtype_workload
   - kubernetes_version
   - node_linux_version
   - node_pool_size
@@ -68,6 +69,13 @@ variables:
     default: true
     required: true
     visible: true
+
+  autoscaler_authtype_workload:
+    type: boolean
+    title: "Autoscaler AuthType Workload?"
+    description: "Choose OCI OKE Autoscaler Add-on AuthType (Workload Principal vs Instance Principal)."
+    visible: true
+    default: true
 
   kubernetes_version:
     title: "Kubernetes Version"

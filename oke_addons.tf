@@ -24,10 +24,14 @@ resource "oci_containerengine_addon" "fk_oke_autoscaler_addon" {
       key = "nodes"
       value = join("", [var.autoscaler_min_number_of_nodes,":",var.autoscaler_max_number_of_nodes,":",oci_containerengine_node_pool.fk_oke_autoscaler_node_pool[0].id])
     }
-   
-    configurations {
-      key = "authType"
-      value = "workload"
+
+    dynamic "configurations" {
+     for_each = var.autoscaler_authtype_workload ? [1] : []
+       content {
+       key = "authType"
+       value = "workload"
+     }
     }
+
     remove_addon_resources_on_delete = true
 }

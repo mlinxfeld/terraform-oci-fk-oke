@@ -9,6 +9,10 @@ variable "enable_autoscaler_addon" {
   default = true
 }
 
+variable "autoscaler_authtype_workload" {
+  default = true
+}
+
 variable "kubernetes_version" {
   default = "v1.28.2"
 }

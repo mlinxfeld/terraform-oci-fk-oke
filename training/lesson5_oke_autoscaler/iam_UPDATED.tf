@@ -1,3 +1,4 @@
+# Workload identity principal scenario (autoscaler_authtype_workload=true)
 resource "oci_identity_policy" "fk_oke_autoscaler_policy_workload_identity_principal" {
   count          = var.autoscaler_authtype_workload ? 1 : 0  
   provider       = oci.homeregion
@@ -14,6 +15,7 @@ resource "oci_identity_policy" "fk_oke_autoscaler_policy_workload_identity_princ
   ]
 }
 
+# Instance principal scenario (autoscaler_authtype_workload=false)
 resource "oci_identity_dynamic_group" "fk_oke_autoscaler_dg" {
   count          = var.autoscaler_authtype_workload ? 0 : 1  
   provider       = oci.homeregion

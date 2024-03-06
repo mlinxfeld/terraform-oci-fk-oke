@@ -206,9 +206,10 @@ variables:
     required: false
     visible: true
     title: "VPUs per GB"
-    description: "Choose performance level for PVC backed by a block volume - Lower Cost (0), Balanced (10), or Higher Performance (20)."
+    description: "Choose performance level for PVC backed by a block volume - Lower Cost (0), Balanced (10), Higher Performance (20), or Ultra High Performance (30)."
     default: "0"
     enum:
       - "0"  
       - "10"
       - "20"
+      - "30"

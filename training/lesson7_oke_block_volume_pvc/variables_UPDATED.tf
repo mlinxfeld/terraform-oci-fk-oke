@@ -76,6 +76,7 @@ variable "vpus_per_gb" {
   default = "0" # Lower Cost 
 #  default = "10" # Balanced
 #  default = "20" # Higher Performance
+#  default = "30" # Ultra High Performance 
 }
 
 

@@ -6,6 +6,7 @@ provisioner: blockvolume.csi.oraclecloud.com
 parameters:
   csi.storage.k8s.io/fstype: ${fs_type}
   vpusPerGB: "${vpus_per_gb}"
+  ${ vpus_per_gb == "30" ? "attachment-type: \"iscsi\"" : "" }
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 volumeBindingMode: WaitForFirstConsumer

@@ -97,7 +97,7 @@ resource "null_resource" "deploy_oke_nginx" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 60"
+    command = "sleep 120"
   }
 
   provisioner "local-exec" {
@@ -106,10 +106,6 @@ resource "null_resource" "deploy_oke_nginx" {
 
   provisioner "local-exec" {
     command = "kubectl get services"
-  }
-
-  provisioner "local-exec" {
-    command = "lb_ip_addpress=$(kubectl get service lb-service | awk  -F ' ' '{print $4}' | sed -n 2p) ; echo 'curl lb_ip_addpress:' ; curl $lb_ip_addpress"
   }
   
   provisioner "local-exec" {

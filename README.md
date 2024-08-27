@@ -87,3 +87,14 @@ node_eviction_node_pool_settings | If you want to setup Node Eviction Details co
 eviction_grace_duration | If node_eviction_node_pool_settings is set to TRUE then you can setup duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon and drain. Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M
 is_force_delete_after_grace_duration | If node_eviction_node_pool_settings is set to TRUE then you can setup underlying compute instance to be deleted event if you cannot evict all the pods in grace period.
 ssh_public_key | If you want to use your own SSH public key instead of generated onne by the module.
+
+
+## Contributing
+This project is open source. Please submit your contributions by forking this repository and submitting a pull request! FoggyKitchen appreciates any contributions that are made by the open source community.
+
+## License
+Copyright (c) 2024 FoggyKitchen.com
+
+Licensed under the Universal Permissive License (UPL), Version 1.0.
+
+See [LICENSE](LICENSE) for more details.

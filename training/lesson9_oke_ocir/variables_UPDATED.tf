@@ -12,7 +12,7 @@ variable "number_of_nginx_replicas" {
 }
 
 variable "oke_node_shape" {
-  default = "VM.Standard.E3.Flex"
+  default = "VM.Standard.A1.Flex"
 }
 
 variable "oke_node_shape_memory" {

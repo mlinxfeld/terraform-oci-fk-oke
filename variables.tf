@@ -140,7 +140,7 @@ variable "virtual_node_pool" {
 }
 
 variable "node_linux_version" {
-  default = "8.8"
+  default = "8.9"
 }
 
 variable "node_pool_count" {

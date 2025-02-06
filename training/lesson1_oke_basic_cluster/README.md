@@ -483,3 +483,13 @@ module.fk-oke.oci_core_vcn.fk_oke_vcn[0]: Destruction complete after 1s
 
 Destroy complete! Resources: 14 destroyed.
 ```
+
+## Contributing
+This project is open source. Please submit your contributions by forking this repository and submitting a pull request! [FoggyKitchen.com](https://foggykitchen.com/) appreciates any contributions that are made by the open source community.
+
+## License
+Copyright (c) 2025 [FoggyKitchen.com](https://foggykitchen.com/)
+
+Licensed under the Universal Permissive License (UPL), Version 1.0.
+
+See [LICENSE](LICENSE) for more details.

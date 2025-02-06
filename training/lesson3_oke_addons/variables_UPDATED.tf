@@ -1,9 +1,9 @@
 variable "tenancy_ocid" {}
-#variable "user_ocid" {}
-#variable "private_key_path" {}
+variable "user_ocid" {}
+variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
-#variable "fingerprint" {}
+variable "fingerprint" {}
 
 variable "number_of_nginx_replicas" {
    default = 10
@@ -23,7 +23,7 @@ variable "fk_oke_addon_map" {
           config_value = "1"
         }
       }
-      addon_version = "v1.13.3"
+      addon_version = "v1.16.1"
     },
     "OracleDatabaseOperator" = {
       configurations = {
@@ -31,7 +31,7 @@ variable "fk_oke_addon_map" {
           config_value = "1"
         }
       }
-      addon_version = "v1.0.0"
+      addon_version = "v1.1.0"
     }
   }
 }

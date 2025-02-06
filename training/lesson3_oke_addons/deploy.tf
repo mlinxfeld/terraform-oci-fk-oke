@@ -1,8 +1,9 @@
 resource "local_file" "nginx_deployment" {
-  content  = data.template_file.nginx_deployment.rendered
+  content  = templatefile("${path.module}/manifest/nginx.template.yaml", {
+    number_of_nginx_replicas = var.number_of_nginx_replicas
+  })
   filename = "${path.module}/nginx.yaml"
 }
-
 resource "null_resource" "deploy_nginx" {
   depends_on = [
   module.fk-oke.cluster,

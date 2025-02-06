@@ -1,9 +1,9 @@
 variable "tenancy_ocid" {}
-#variable "user_ocid" {}
-#variable "private_key_path" {}
+variable "user_ocid" {}
+variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
-#variable "fingerprint" {}
+variable "fingerprint" {}
 
 variable "enable_autoscaler_addon" {
   default = true
@@ -14,11 +14,11 @@ variable "autoscaler_authtype_workload" {
 }
 
 variable "kubernetes_version" {
-  default = "v1.28.2"
+  default = "v1.31.1"
 }
 
 variable "node_linux_version" {
-  default = "8.8"
+  default = "8.10"
 }
 
 variable "node_pool_size" {

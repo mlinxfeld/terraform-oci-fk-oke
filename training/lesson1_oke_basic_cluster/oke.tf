@@ -3,6 +3,8 @@ module "fk-oke" {
   tenancy_ocid                  = var.tenancy_ocid      # Our tenancy OCID     
   compartment_ocid              = var.compartment_ocid  # Compartment OCID where OKE and network will be deployed
   cluster_type                  = "basic"               # Basic cluster
+  k8s_version                   = "v1.31.1"
+  node_linux_version            = "8.10"
   node_shape                    = "VM.Standard.A1.Flex" # OCI Free Tier
   node_ocpus                    = 1                     # OCI Free Tier
   node_memory                   = 4                     # OCI Free Tier

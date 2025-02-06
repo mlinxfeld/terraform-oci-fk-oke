@@ -87,8 +87,7 @@ variable "is_nodepool_subnet_public" {
 }
 
 variable "k8s_version" {
-#  default = "v1.26.2"
-   default = "v1.28.2"
+  default = "v1.31.1"
 }
 
 variable "pool_name" {
@@ -140,7 +139,7 @@ variable "virtual_node_pool" {
 }
 
 variable "node_linux_version" {
-  default = "8.9"
+  default = "8.10"
 }
 
 variable "node_pool_count" {

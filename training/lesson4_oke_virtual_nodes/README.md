@@ -403,3 +403,14 @@ oci_identity_policy.fk_oke_virtual_node_pool_policy: Destruction complete after 
 
 Destroy complete! Resources: 17 destroyed.
 ```
+
+
+## Contributing
+This project is open source. Please submit your contributions by forking this repository and submitting a pull request! [FoggyKitchen.com](https://foggykitchen.com/) appreciates any contributions that are made by the open source community.
+
+## License
+Copyright (c) 2025 [FoggyKitchen.com](https://foggykitchen.com/)
+
+Licensed under the Universal Permissive License (UPL), Version 1.0.
+
+See [LICENSE](LICENSE) for more details.

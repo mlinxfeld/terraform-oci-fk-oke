@@ -80,23 +80,23 @@ variables:
   kubernetes_version:
     title: "Kubernetes Version"
     description: "Choose Kubernetes Version for your OKE Enhanced Cluster"
-    default: "v1.28.2"
+    default: "v1.31.1"
     required: false
     type: enum
     enum: 
-      - "v1.28.2"
-      - "v1.27.2"
-      - "v1.26.7"    
+      - "v1.31.1"
+      - "v1.30.1"
+      - "v1.29.10"
+   
 
   node_linux_version:
     title: "Kubernetes Nodes OS Version"
     description: "Choose Kubernetes Nodes OS Version"
-    default: "8.8"
+    default: "8.10"
     required: false
     type: enum
     enum: 
-      - "8.8"
-      - "8.7"       
+      - "8.10"     
 
   node_pool_size:
     title: "Number of Nodes"

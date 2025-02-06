@@ -88,12 +88,11 @@ eviction_grace_duration | If node_eviction_node_pool_settings is set to TRUE the
 is_force_delete_after_grace_duration | If node_eviction_node_pool_settings is set to TRUE then you can setup underlying compute instance to be deleted event if you cannot evict all the pods in grace period.
 ssh_public_key | If you want to use your own SSH public key instead of generated onne by the module.
 
-
 ## Contributing
 This project is open source. Please submit your contributions by forking this repository and submitting a pull request! [FoggyKitchen.com](https://foggykitchen.com/) appreciates any contributions that are made by the open source community.
 
 ## License
-Copyright (c) 2024 [FoggyKitchen.com](https://foggykitchen.com/)
+Copyright (c) 2025 [FoggyKitchen.com](https://foggykitchen.com/)
 
 Licensed under the Universal Permissive License (UPL), Version 1.0.
 

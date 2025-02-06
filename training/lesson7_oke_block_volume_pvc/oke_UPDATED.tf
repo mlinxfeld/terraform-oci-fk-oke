@@ -3,6 +3,8 @@ module "fk-oke" {
   tenancy_ocid                  = var.tenancy_ocid
   compartment_ocid              = var.compartment_ocid
   cluster_type                  = "enhanced"
+  k8s_version                   = "v1.31.1"
+  node_linux_version            = "8.10"
   node_shape                    = var.oke_node_shape
   oci_vcn_ip_native             = true
   

@@ -1,20 +1,36 @@
 resource "local_file" "nginx_deployment" {
-  content  = data.template_file.nginx_deployment.rendered
+  content = templatefile("${path.module}/manifest/nginx.template.yaml", {
+    number_of_nginx_replicas = "${var.number_of_nginx_replicas}"
+    image_url                = "${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/fknginx:latest" 
+    is_arm_node_shape        = local.is_arm_node_shape
+  })
   filename = "${path.module}/nginx.yaml"
 }
 
 resource "local_file" "service_deployment" {
-  content  = data.template_file.service_deployment.rendered
+  content = templatefile("${path.module}/manifest/service.template.yaml", {
+      lb_shape                      = var.lb_shape
+      flex_lb_min_shape             = var.flex_lb_min_shape 
+      flex_lb_max_shape             = var.flex_lb_max_shape  
+      lb_listener_port              = var.lb_listener_port
+      lb_nsg                        = var.lb_nsg
+      lb_nsg_id                     = var.lb_nsg ? oci_core_network_security_group.FoggyKitchenOKELBSecurityGroup[0].id : ""
+      use_reserved_public_ip_for_lb = var.use_reserved_public_ip_for_lb
+      reserved_public_ip_for_lb     = var.use_reserved_public_ip_for_lb ? oci_core_public_ip.FoggyKitchenReservedPublicIP[0].ip_address : ""
+  })
   filename = "${path.module}/service.yaml"
 }
 
 resource "local_file" "indexhtml_deployment" {
-  content  = data.template_file.indexhtml_deployment.rendered
+  content = templatefile("${path.module}/manifest/index.template.html", {
+    image_url = "${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/fknginx:latest" 
+  })
   filename = "${path.module}/index.html"
 }
 
 resource "local_file" "dockerfile_deployment" {
-  content  = data.template_file.dockerfile_deployment.rendered
+  content = templatefile("${path.module}/manifest/dockerfile.template", {
+  })
   filename = "${path.module}/dockerfile"
 }
 

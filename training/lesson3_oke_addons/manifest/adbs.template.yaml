@@ -1,0 +1,18 @@
+apiVersion: database.oracle.com/v1alpha1
+kind: AutonomousDatabase
+metadata:
+  name: fk-adbs-instance
+  namespace: default
+spec:
+  details:
+    compartmentOCID: "${compartment_ocid}"
+    dbName: "${adbs_database_dbname}"
+    displayName: "${adbs_database_display_name}"
+    adminPassword: 
+      k8sSecret:
+        name: adbs-admin-password 
+    cpuCoreCount: 1
+    dataStorageSizeInTBs: 1
+    dbWorkload: "OLTP"
+    isAutoScalingEnabled: false
+    isDedicated: false

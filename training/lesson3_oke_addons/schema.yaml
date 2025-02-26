@@ -19,12 +19,15 @@ variableGroups:
   - compartment_ocid
   - show_advanced
 
-- title: "OKE Deployment"
+- title: "ADBS Deployment"
   visible: 
       and:
         - show_advanced
   variables:
-  - number_of_nginx_replicas
+  - deploy_adbs
+  - adbs_database_display_name
+  - adbs_database_dbname
+  - adbs_admin_password
 
 variables:
 
@@ -57,13 +60,34 @@ variables:
     visible: true
     default: false
 
-  number_of_nginx_replicas:
-    title: "Number of NGINX Replica"
-    description: "Choose number of NGINX replicas deployed on your OKE Enhanced Cluster"
-    type: integer
-    minimum: 1
-    maximum: 365
-    multipleOf: 1
-    default: 10
+  deploy_adbs:
+    type: boolean
+    title: "Deploy Autonomous Database"
+    description: "Choose if you want to deploy Autonomous Database with OKE Add-on Database Operator."
+    visible: true
+    default: false
+
+  adbs_admin_password:
+    title: "Autonomous Database ADMIN User Password"
+    description: "Autonomous Database ADMIN User Password"
+    type: password
     required: true
-    visibile: true
+    visibile: 
+      and:
+        - deploy_adbs
+
+  adbs_database_display_name:
+    title: "Autonomous Database Display Name"
+    description: "Type Autonomous Database Display Name"
+    type: string
+    visibile: 
+      and:
+        - deploy_adbs
+
+  adbs_database_dbname:
+    title: "Autonomous DBName"
+    description: "Type Autonomous Database DBName"
+    type: string
+    visibile: 
+      and:
+        - deploy_adbs

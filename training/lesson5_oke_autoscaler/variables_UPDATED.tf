@@ -6,7 +6,7 @@ variable "region" {}
 variable "fingerprint" {}
 
 variable "enable_autoscaler_addon" {
-  default = true
+  default = false
 }
 
 variable "autoscaler_authtype_workload" {
